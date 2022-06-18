@@ -9,8 +9,10 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import tw from "../lib/tailwind.js";
+import { UserContext } from "../context/UserContext.js";
 
 const SignUp = ({ navigation }) => {
+  const { user, setUser } = React.useContext(UserContext);
   const [email, setEmail] = React.useState("");
   const [emailValidError, setEmailValidError] = useState(" ");
   const [name, setName] = React.useState("");
@@ -71,6 +73,7 @@ const SignUp = ({ navigation }) => {
             placeholder="John Doe"
             onChangeText={(value) => {
               setName(value);
+              setUser({ ...user, name: value });
               handleNameError(value);
             }}
             value={name}
@@ -86,6 +89,7 @@ const SignUp = ({ navigation }) => {
             value={email}
             onChangeText={(value) => {
               setEmail(value);
+                setUser({ ...user, email: value });
               handleValidEmail(value);
             }}
             keyboardType="email-address"
@@ -101,6 +105,7 @@ const SignUp = ({ navigation }) => {
             value={password}
             onChangeText={(value) => {
               setPassword(value);
+                setUser({ ...user, password: value });
               handlePasswordError(value);
             }}
           />

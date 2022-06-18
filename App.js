@@ -1,22 +1,29 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import SignUp from "./Screens/SignUp";
 import Age from "./components/Age";
+import Meals from "./components/Meals";
+import { UserContext } from "./context/UserContext";
+import React from "react";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [user, setUser] = React.useState(null);
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
-        <Stack.Screen name="Age" component={Age} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserContext.Provider value={{ user, setUser }}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+          <Stack.Screen name="Sign Up" component={SignUp} />
+          <Stack.Screen name="Age" component={Age} />
+          <Stack.Screen name="Meals" component={Meals} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserContext.Provider>
   );
 }
 
