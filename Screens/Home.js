@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
               width: '50%',
               marginTop: '5%',
               fontFamily: 'SourceSansPro-Regular',
-              color: '#4F4C4C'
+              color: '#4F4C4C',
             }}
           >
             Drink at least 6 glasses of water everyday
