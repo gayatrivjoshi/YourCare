@@ -7,6 +7,8 @@ import Age from "./components/Age";
 import Meals from "./components/Meals";
 import { UserContext } from "./context/UserContext";
 import React from "react";
+import Login from "./components/Login";
+import Home from "./Screens/Home";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +21,8 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
           <Stack.Screen name="Sign Up" component={SignUp} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Age" component={Age} />
           <Stack.Screen name="Meals" component={Meals} />
         </Stack.Navigator>
