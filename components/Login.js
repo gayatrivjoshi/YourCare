@@ -11,12 +11,10 @@ import React, { useState } from "react";
 import tw from "../lib/tailwind.js";
 import { UserContext } from "../context/UserContext.js";
 
-const SignUp = ({ navigation }) => {
+const Login = ({ navigation }) => {
   const { user, setUser } = React.useContext(UserContext);
   const [email, setEmail] = React.useState("");
   const [emailValidError, setEmailValidError] = useState(" ");
-  const [name, setName] = React.useState("");
-  const [nameError, setNameError] = React.useState(" ");
   const [password, setPassword] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(" ");
 
@@ -31,14 +29,6 @@ const SignUp = ({ navigation }) => {
     }
   };
 
-  const handleNameError = (val) => {
-    if (val.length === 0) {
-      setNameError("Name must be entered");
-    } else {
-      setNameError("");
-    }
-  };
-
   const handlePasswordError = (val) => {
     let regex =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9]).{6,}$/;
@@ -50,36 +40,20 @@ const SignUp = ({ navigation }) => {
       setPasswordError("");
     }
   };
-
   return (
     <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: "#F9F9F9",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}
     >
-      <View style={tw`mt-20 justify-start items-center`}>
-        <Text style={tw`text-xl mb-5 text-primary-black`}>SignUp</Text>
+      <View style={tw`justify-start items-center`}>
+        <Text style={tw`text-xl mb-5 text-primary-black`}>Login</Text>
         <Text style={tw`text-primary-black`}>
-          Please fill the details and create account
+          Please login to continue using our app
         </Text>
-      </View>
-      <View style={tw`flex-col ml-10 py-3 mt-10 justify-start`}>
-        <Text style={tw`text-primary-black`}>Name</Text>
-        <View style={styles.input}>
-          <TextInput
-            placeholder="John Doe"
-            onChangeText={(value) => {
-              setName(value);
-              setUser({ ...user, name: value });
-              handleNameError(value);
-            }}
-            value={name}
-          />
-          <Text style={tw`mt-3 text-secondary-red`}>{nameError}</Text>
-        </View>
       </View>
       <View style={tw`flex-col ml-10 py-3 mt-5 justify-start`}>
         <Text style={tw`text-primary-black`}>Email</Text>
@@ -115,25 +89,21 @@ const SignUp = ({ navigation }) => {
       <View style={tw`flex-col justify-start`}>
         <TouchableOpacity
           onPress={() => {
-            if (
-              emailValidError === "" &&
-              nameError === "" &&
-              passwordError === ""
-            ) {
-              navigation.navigate("Age");
+            if (emailValidError === "" && passwordError === "") {
+              navigation.navigate("Home");
             } else {
               console.log("Fill all the details");
             }
           }}
           style={styles.button}
         >
-          <Text style={tw`text-lg text-primary-white`}>Sign Up</Text>
+          <Text style={tw`text-lg text-primary-white`}>Login</Text>
         </TouchableOpacity>
       </View>
       <View style={tw`flex-row justify-center items-center`}>
-        <Text style={tw`text-primary-black`}>Already have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={tw`text-secondary-purple`}> Log In</Text>
+        <Text style={tw`text-primary-black`}>Don't have an account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Sign Up")}>
+          <Text style={tw`text-secondary-purple`}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -161,5 +131,4 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
-
-export default SignUp;
+export default Login;

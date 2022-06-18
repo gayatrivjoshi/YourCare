@@ -42,7 +42,7 @@ const WelcomeScreen = ({ navigation }) => {
       </TouchableOpacity>
       <View style={tw`flex-row justify-center items-center`}>
         <Text style={tw`text-primary-black`}>Already have an account?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> navigation.navigate("Login")}>
           <Text style={tw`text-secondary-purple`}> Log In</Text>
         </TouchableOpacity>
       </View>
