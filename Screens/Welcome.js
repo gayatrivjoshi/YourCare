@@ -10,7 +10,7 @@ import {
 import React from "react";
 import tw from "../lib/tailwind.js";
 
-const WelcomeScreen = ({ navigation }) => {
+const Welcome = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default Welcome;
