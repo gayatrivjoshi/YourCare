@@ -6,24 +6,24 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-} from "react-native";
-import React from "react";
-import tw from "../lib/tailwind.js";
-import { UserContext } from "../context/UserContext.js";
+} from 'react-native';
+import React from 'react';
+import tw from '../lib/tailwind.js';
+import { UserContext } from '../context/UserContext.js';
 
-const Meals = () => {
+const Meals = ({ navigation }) => {
   const { user, setUser } = React.useContext(UserContext);
-  const [meal, setMeal] = React.useState("");
-  const [mealError, setMealError] = React.useState(" ");
+  const [meal, setMeal] = React.useState('');
+  const [mealError, setMealError] = React.useState(' ');
 
   const handleMealError = (val) => {
     const regex = /^[0-9]+$/;
     if (val.length === 0) {
-      setMealError("Meal must be entered");
+      setMealError('Meal must be entered');
     } else if (regex.test(val) === false) {
-      setMealError("Enter a valid meal");
+      setMealError('Enter a valid meal');
     } else {
-      setMealError("");
+      setMealError('');
     }
   };
 
@@ -31,10 +31,10 @@ const Meals = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#F9F9F9",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        backgroundColor: '#F9F9F9',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
       }}
     >
       <Text style={tw`text-xl text-primary-black`}>How many meals you</Text>
@@ -53,7 +53,18 @@ const Meals = () => {
           handleMealError(value);
         }}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          if (mealError === '') {
+            setUser({ ...user, meal: meal });
+            navigation.navigate('Home');
+            setMeal('');
+          } else {
+            console.log('Meal error');
+          }
+        }}
+      >
         <Text style={tw`text-lg text-primary-white`}>Next</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -62,23 +73,23 @@ const Meals = () => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#C490E4",
+    backgroundColor: '#C490E4',
     padding: 10,
     borderRadius: 10,
-    marginTop: "80%",
-    marginBottom: "20%",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "80%",
+    marginTop: '80%',
+    marginBottom: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
     height: 50,
   },
   input: {
-    backgroundColor: "#E8E8E8",
-    marginTop: "5%",
+    backgroundColor: '#E8E8E8',
+    marginTop: '5%',
     padding: 10,
-    width: "60%",
+    width: '60%',
     height: 40,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
