@@ -5,8 +5,10 @@ import { useNavigationContainerRef } from '@react-navigation/native';
 import HomeCard from '../components/HomeCard';
 import personSleeping from '../assets/images/personSleeping.png';
 import journal from '../assets/images/journal.png';
+import { UserContext } from '../context/UserContext';
 
 const Home = ({ navigation }) => {
+  const { user } = React.useContext(UserContext);
   const salutation = ['Good morning', 'Good afternoon', 'Good evening'];
   const time = new Date().getHours();
   const greeting = salutation[time < 4 ? 2 : time < 12 ? 0 : time < 16 ? 1 : 2];
@@ -58,7 +60,7 @@ const Home = ({ navigation }) => {
               color: '#4F4C4C',
             }}
           >
-            {greeting}, Gayatri Joshi
+            {greeting}, {user.name}
           </Text>
           <Text
             style={{
@@ -133,12 +135,13 @@ const Home = ({ navigation }) => {
         </View>
         {homecardinfo.map((info, index) => (
           <HomeCard
-            key={index}
+            index={index}
             title={info.title}
             image={info.image}
             buttonTitle={info.buttonTitle}
             route={info.route}
             navigation={navigation}
+            key={index}
           />
         ))}
       </View>

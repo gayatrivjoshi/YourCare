@@ -1,9 +1,13 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export const UserContext = createContext({
-  name: "",
-  email: "",
-  password: "",
-  age: "",
-  meals: "",
+  name: 'Harsh',
+  email: '',
+  password: '',
+  age: '',
+  meals: '',
+  waterIntake: '',
+  mealsOnTime: '',
+  sleepScheduleScore: 0,
+  journalEntries: 0,
 });

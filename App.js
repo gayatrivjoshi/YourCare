@@ -19,7 +19,17 @@ import Login from './components/Login';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState({
+    name: 'Harsh',
+    email: '',
+    password: '',
+    age: '',
+    meals: '',
+    waterIntake: '',
+    mealsOnTime: '',
+    sleepScheduleScore: 0,
+    journalEntries: 0,
+  });
   const [loaded] = useFonts({
     'SourceSansPro-Regular': require('./assets/fonts/SourceSansPro-Regular.ttf'),
     'SourceSansPro-Bold': require('./assets/fonts/SourceSansPro-Bold.ttf'),
@@ -31,15 +41,15 @@ export default function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Mental Health" component={MentalHealth} />
+          <Stack.Screen name="Badge" component={Badge} />
+          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="Sign Up" component={SignUp} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Age" component={Age} />
           <Stack.Screen name="Meals" component={Meals} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Mental Health" component={MentalHealth} />
-          <Stack.Screen name="Badge" component={Badge} />
-          <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Track Sleep" component={TrackSleep} />
           <Stack.Screen name="Write Journal" component={WriteJournal} />
         </Stack.Navigator>

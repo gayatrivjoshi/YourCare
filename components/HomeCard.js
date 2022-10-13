@@ -1,9 +1,10 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 
-const HomeCard = ({ key, title, image, buttonTitle, route, navigation }) => {
+const HomeCard = ({ index, title, image, buttonTitle, route, navigation }) => {
   return (
     <View
+      key={index}
       style={{
         backgroundColor: '#FFE1F8',
         width: '80%',
@@ -18,7 +19,6 @@ const HomeCard = ({ key, title, image, buttonTitle, route, navigation }) => {
         alignItems: 'center',
         justifyContent: 'center',
       }}
-      key={key}
     >
       <View
         style={{
